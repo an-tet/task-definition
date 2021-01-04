@@ -1,4 +1,13 @@
 const home = (req, res) => {
+    console.log('home ' + req.isAuthenticated());
     res.send('<a href= "/logout">cerrar sesion</a>');
 };
-module.exports = home;
+
+
+const getTasks = (req, res) => {
+    console.log('entre');
+};
+module.exports = {
+    home,
+    getTasks
+};

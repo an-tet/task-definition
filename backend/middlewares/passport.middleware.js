@@ -9,6 +9,9 @@ passport.use(new Strategy({
         callbackURL: '/login/facebook/task'
     },
     function (accessToken, refreshToken, profile, cb) {
+        console.log('accessToken', accessToken);
+        console.log('refreshToken', refreshToken);
+        console.log('profile', profile);
         return cb(null, profile);
     }));
 
@@ -19,4 +22,13 @@ passport.serializeUser(function (user, cb) {
 passport.deserializeUser(function (obj, cb) {
     cb(null, obj);
 });
-module.exports = app;
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login/facebook/task');
+}
+module.exports = {
+    app,
+    isLoggedIn
+};

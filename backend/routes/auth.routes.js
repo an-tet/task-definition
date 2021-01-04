@@ -1,4 +1,3 @@
-require('../middlewares/passport.middleware');
 const express = require('express');
 const app = express();
 const {
@@ -8,32 +7,29 @@ const {
 
 const passport = require('passport');
 
-app.get('/login/facebook',
-    passport.authenticate('facebook'));
-
-app.get('/login/facebook',
-    passport.authenticate('facebook')
-);
-
 app.get('/login/facebook/task',
     passport.authenticate('facebook', {
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        session: false,
     }),
     function (req, res) {
-
         res.redirect('/home');
     });
 
 app.get('/logout', (req, res) => {
-    req.session = null;
-    req.logout();
     res.redirect('/');
 });
 
 
 app.get('/', (req, res) => {
-    res.send('/');
+
+    console.log('/ ' + req.isAuthenticated());
+    res.send('<a href= "/login/facebook/task">abrir</a>');
 });
+
+// app.get('login', (req, res) => {
+//     console.log();
+// });
 
 // Validat5e login user
 app.post('/login', login);
