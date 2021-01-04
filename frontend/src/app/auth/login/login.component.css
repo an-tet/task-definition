@@ -1,0 +1,21 @@
+.img-fluid {
+    height: 25rem !important;
+    margin: 1.5rem auto;
+  }
+
+.txt1{
+    color: #8ace79;
+}
+
+.facebook {
+    background-color: #1877f2;
+}
+
+.facebook:hover{
+    background-color: #166ee0;
+}
+
+.fa {
+    border-color: white;
+    font-size: 2rem;
+}
