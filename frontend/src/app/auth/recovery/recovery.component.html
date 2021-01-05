@@ -1,1 +1,36 @@
-<p>recovery works!</p>
+<div class="limiter animated fadeInLeft">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-50 p-b-90">
+
+      <!-- Inicio formulario -->
+      <form class="login100-form validate-form flex-sb flex-w fadeInLeft" #form="ngForm" (ngSubmit)="enviar(form)">
+        <img src="../../../assets/images/Logo-Pazred.png" alt="Logo-PazRed" class="img-fluid">
+
+        <label class="label">Correo electrónico</label>
+        <div class="wrap-input100 m-b-16">
+          <input [(ngModel)]="correo" class="input100" type="text" name="correo"
+            placeholder="Ingrese su correo electronico" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$">
+          <span class="focus-input100"></span>
+        </div>
+
+        <!-- Error por formato -->
+        <small *ngIf="form.submitted && form.invalid" class="text-danger">Formato de correo no
+          valido</small>
+
+        <div class="container-login100-form-btn m-t-17">
+          <button class="login100-form-btn" type="submit">
+            Recuperar
+          </button>
+        </div>
+
+
+        <a routerLink="/login" class="txt1">
+          volver al inicio de sesión
+        </a>
+
+      </form>
+      <!-- Fin formulario -->
+
+    </div>
+  </div>
+</div>

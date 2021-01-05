@@ -1,32 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import Swal from 'sweetalert2';
-
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class SigninComponent implements OnInit {
   email: string;
   password: string;
-  rememberMe = false;
+  confirmPassword: string;
   login: User;
   constructor(private router: Router, private authServise: AuthService) {}
 
-  ngOnInit(): void {
-    if (localStorage.getItem('email')) {
-      this.email = localStorage.getItem('email');
-      this.rememberMe = true;
-    }
-
-    localStorage.removeItem('token');
-  }
+  ngOnInit(): void {}
 
   onSubmit(form: NgForm): void {
     // Validación de formulario
@@ -34,9 +25,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    const login: any = {
+    const signIn: any = {
       email: this.email,
       password: this.password,
+      confirmPassword: this.confirmPassword,
     };
 
     Swal.fire({
@@ -50,11 +42,8 @@ export class LoginComponent implements OnInit {
     });
 
     // Petición para validar usuario
-    this.authServise.verifyLogin(login).subscribe(
+    this.authServise.signIn(signIn).subscribe(
       (resp: any) => {
-        if (this.rememberMe) {
-          localStorage.setItem('email', this.email);
-        }
         // En caso de éxito
         Swal.fire({
           icon: 'success',
@@ -62,7 +51,7 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
           willClose: () => {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/login');
           },
         });
       },
@@ -79,12 +68,5 @@ export class LoginComponent implements OnInit {
         );
       }
     );
-  }
-
-  rememberMeChange(): void {
-    if (!this.rememberMe) {
-      localStorage.removeItem('email');
-    }
-    localStorage.setItem('email', this.email);
   }
 }

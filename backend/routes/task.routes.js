@@ -8,8 +8,8 @@ const {
     isLoggedIn
 } = require('../middlewares/passport.middleware');
 
-app.get('/home', home);
+app.get('api/home', home);
 
-app.get('/tasks', isLoggedIn, getTasks);
+app.get('api/tasks', isLoggedIn, getTasks);
 
 module.exports = app;

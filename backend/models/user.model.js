@@ -4,18 +4,14 @@ const uniqueValidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
-    user: {
-        type: String,
-        required: [true, 'El usuario es oblogatorio']
-    },
     password: {
         type: String,
-        required: [true, 'La clave es oblogatoria']
+        required: [true, 'The password must be mandatory']
     },
     email: {
         type: String,
         unique: true,
-        required: [true, 'El email es oblogatorio']
+        required: [true, 'The email must be mandatory']
     },
     facebook: {
         type: Boolean,
@@ -29,8 +25,6 @@ userSchema.methods.toJSON = function () {
     return userObject;
 };
 
-userSchema.plugin(uniqueValidator, {
-    message: '{PATH} debe ser unico'
-});
+userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);

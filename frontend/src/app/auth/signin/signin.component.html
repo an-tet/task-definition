@@ -1,4 +1,4 @@
-<div class="limiter animated fadeInRight">
+<div class="limiter animated fadeInLeft">
   <div class="container-login100">
     <div class="wrap-login100 p-t-50 p-b-90">
 
@@ -26,41 +26,37 @@
           <span class="focus-input100"></span>
         </div>
 
-        <!-- Recordar uduario -->
-        <div class="flex-sb-m w-full p-t-3 p-b-24">
-          <div class="contact100-form-checkbox">
-            <input class="input-checkbox100" [(ngModel)]="rememberMe" (change)=rememberMeChange() id="ckb1"
-              type="checkbox" name="remember-me">
-            <label class="label-checkbox100" for="ckb1">
-              Remember my email
-            </label>
-          </div>
+        <!-- Mensaje de error  -->
+        <span *ngIf="f.submitted && f.controls['confirmPassword'].errors" class="text-danger animated fadeIn">the
+          password must
+          have at least 6 letters</span>
+        <div class="wrap-input100 m-b-16" data-validate="Password is required">
+          <input class="input100" type="password" name="confirmPassword" [(ngModel)]="confirmPassword"
+            (keyup.enter)="onSubmit(f)" placeholder="Confirm password" minlength="6" required>
+          <span class="focus-input100"></span>
         </div>
+
 
 
         <div class="container-login100-form-btn m-t-17">
           <button class="login100-form-btn" type="submit">
-            log in
+            sign up
           </button>
         </div>
 
         <div class="container-login100-form-btn m-t-17">
           <button class="login100-form-btn facebook" type="submit">
-            <i class="fa fa-facebook-f m-r-60"></i>log in with facebook
+            <i class="fa fa-facebook-f m-r-60"></i>sign in with facebook
           </button>
         </div>
 
         <!-- recuperar datos -->
         <div id="container_options">
-          <a routerLink="/signin" class="txt1">
-            Sign in
-          </a>
-          <a routerLink="/recovery" class="txt1">
-            ¿Forgot your password?
+          <a routerLink="/login" class="txt1">
+            Login
           </a>
         </div>
-      </form>
-      <!-- fin form -->
+      </form> <!-- fin form -->
 
     </div>
   </div>

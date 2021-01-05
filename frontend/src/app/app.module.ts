@@ -7,8 +7,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { RecoveryComponent } from './auth/recovery/recovery.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SigninComponent } from './auth/signin/signin.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,10 @@ import { FormsModule } from '@angular/forms';
     RecoveryComponent,
     NavbarComponent,
     FooterComponent,
+    SigninComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

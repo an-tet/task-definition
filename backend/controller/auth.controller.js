@@ -5,7 +5,6 @@ const User = require('../models/user.model');
 
 const login = (req, res) => {
     let body = req.body;
-
     User.findOne({
         email: body.email
     }, (err, userDB) => {
@@ -19,7 +18,7 @@ const login = (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: '(Usuario) o clave incorrectos'
+                    message: 'Email or password are incorrect'
                 }
             });
 
@@ -27,7 +26,7 @@ const login = (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'Usuario o (clave) incorrectos'
+                    message: 'Email or password are incorrect'
                 }
             });
 
@@ -38,6 +37,7 @@ const login = (req, res) => {
         });
         res.json({
             ok: true,
+            message: 'All ok',
             user: userDB,
             token
         });
@@ -49,24 +49,35 @@ const signin = (req, res) => {
 
     let body = req.body;
 
-    let user = new User({
-        user: body.user,
-        password: bcrypt.hashSync(body.password, 10),
-        email: body.email
-    });
 
-    user.save((err, userDB) => {
-        if (err)
-            return res.status(400).json({
-                ok: false,
-                err,
-            });
-
-        res.json({
-            ok: true,
-            user: userDB
+    if (body.password === body.confirmPassword) {
+        let user = new User({
+            email: body.email,
+            password: bcrypt.hashSync(body.password, 10),
         });
-    });
+
+        user.save((err, userDB) => {
+            if (err)
+                return res.status(400).json({
+                    ok: false,
+                    err,
+                });
+
+            res.json({
+                ok: true,
+                message: 'All ok',
+                user: userDB
+            });
+        });
+
+    } else {
+        res.status(400).json({
+            ok: false,
+            err: {
+                message: 'The password no match'
+            }
+        })
+    }
 };
 
 module.exports = {

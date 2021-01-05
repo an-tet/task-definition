@@ -1,40 +1,41 @@
-const express = require('express');
-const app = express();
+const Router = require('express');
 const {
     login,
     signin
 } = require('../controller/auth.controller');
 
-const passport = require('passport');
+const routes = Router();
 
-app.get('/login/facebook/task',
-    passport.authenticate('facebook', {
-        failureRedirect: '/login',
-        session: false,
-    }),
-    function (req, res) {
-        res.redirect('/home');
-    });
+// const passport = require('passport');
 
-app.get('/logout', (req, res) => {
-    res.redirect('/');
-});
+// app.get('login/facebook/task',
+//     passport.authenticate('facebook', {
+//         failureRedirect: '/login',
+//         session: false,
+//     }),
+//     function (req, res) {
+//         res.redirect('/home');
+//     });
+
+// app.get('logout', (req, res) => {
+//     res.redirect('/');
+// });
 
 
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
 
-    console.log('/ ' + req.isAuthenticated());
-    res.send('<a href= "/login/facebook/task">abrir</a>');
-});
+//     console.log('/ ' + req.isAuthenticated());
+//     res.send('<a href= "/login/facebook/task">abrir</a>');
+// });
 
 // app.get('login', (req, res) => {
 //     console.log();
 // });
 
 // Validat5e login user
-app.post('/login', login);
+routes.post('/login', login);
 
 // Create user
-app.post('/signin', signin);
+routes.post('/signIn', signin);
 
-module.exports = app;
+module.exports = routes;
