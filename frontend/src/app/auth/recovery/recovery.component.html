@@ -4,7 +4,7 @@
 
       <!-- Inicio formulario -->
       <form class="login100-form validate-form flex-sb flex-w fadeInLeft" #form="ngForm" (ngSubmit)="enviar(form)">
-        <img src="../../../assets/images/Logo-Pazred.png" alt="Logo-PazRed" class="img-fluid">
+        <img src="../../../assets/images/task_logo.png" alt="Logo-PazRed" class="img-fluid">
 
         <label class="label">Correo electrónico</label>
         <div class="wrap-input100 m-b-16">
@@ -23,10 +23,11 @@
           </button>
         </div>
 
-
-        <a routerLink="/login" class="txt1">
-          volver al inicio de sesión
-        </a>
+        <div id="container_options">
+          <a routerLink="/login" class="txt1 mt-5">
+            volver al inicio de sesión
+          </a>
+        </div>
 
       </form>
       <!-- Fin formulario -->

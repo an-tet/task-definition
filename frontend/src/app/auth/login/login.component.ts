@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    // Validación de formulario
+    
     if (form.invalid) {
       return;
     }
@@ -49,13 +49,13 @@ export class LoginComponent implements OnInit {
       },
     });
 
-    // Petición para validar usuario
+    
     this.authServise.verifyLogin(login).subscribe(
       (resp: any) => {
         if (this.rememberMe) {
           localStorage.setItem('email', this.email);
         }
-        // En caso de éxito
+
         Swal.fire({
           icon: 'success',
           title: resp.message,
@@ -67,14 +67,11 @@ export class LoginComponent implements OnInit {
         });
       },
       (err) => {
-        // console.log('err', err);
-
-        // En caso de éxito
         Swal.fire(
           'error',
-          !err.error.err.message
+          !err.error.message
             ? 'Something its wrong'
-            : err.error.err.message,
+            : err.error.message,
           'error'
         );
       }

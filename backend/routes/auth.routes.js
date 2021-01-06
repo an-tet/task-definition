@@ -1,8 +1,11 @@
 const Router = require('express');
 const {
     login,
-    signin
+    signin,
+    renewToken,
+    recoveryData
 } = require('../controller/auth.controller');
+const validateJWT = require('../middlewares/validate.midddleware');
 
 const routes = Router();
 
@@ -37,5 +40,8 @@ routes.post('/login', login);
 
 // Create user
 routes.post('/signIn', signin);
+routes.post('/recoveryData', recoveryData);
+
+routes.get('/renewToken', validateJWT, renewToken);
 
 module.exports = routes;

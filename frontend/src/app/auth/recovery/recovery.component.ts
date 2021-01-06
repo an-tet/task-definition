@@ -29,27 +29,31 @@ export class RecoveryComponent implements OnInit {
       });
 
       // Petición para validar datos y actualizar
-      this.auth.recoveryData(this.correo).subscribe((resp: any) => {
-        if (resp) {
-          // En caso de éxito
-          Swal.fire({
-            icon: 'success',
-            title: 'El correo se envio correctamente',
-            showConfirmButton: false,
-            timer: 1500,
-            willClose: () => {
-              this.router.navigateByUrl('/login');
-            },
-          });
-        } else {
-          // En caso de éxito
+      this.auth.recoveryData(this.correo).subscribe(
+        (resp: any) => {
+          if (resp) {
+            // En caso de éxito
+            Swal.fire({
+              icon: 'success',
+              title: 'All ok, check your email',
+              showConfirmButton: false,
+              timer: 1500,
+              willClose: () => {
+                this.router.navigateByUrl('/login');
+              },
+            });
+          }
+        },
+        (err) => {
           Swal.fire(
             'error',
-            'No se pudo recurar sus credenciales de inicio, intentelo de nuevo si el problema persiste contacte con el administrador',
+            !err.error.err.message
+              ? 'Something its wrong'
+              : err.error.err.message,
             'error'
           );
         }
-      });
+      );
     }
   }
 }

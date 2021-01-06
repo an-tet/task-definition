@@ -1,0 +1,13 @@
+<div class="header">
+  <h3>Proyects</h3>
+  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+</div>
+<div class="list-group">
+  <button type="button" *ngFor="let proyect of proyects" class="list-group-item list-group-item-action"
+    [class.active]="activeProyect === proyect" (click)="showProyect(proyect)">
+    {{proyect}}
+    <button type="button" class="close cursor">
+      <span>&times;</span>
+    </button>
+  </button>
+</div>

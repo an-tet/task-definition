@@ -9,10 +9,14 @@ process.env.URL_DB = 'mongodb+srv://task-definition:BIWICks6DhzuEj6P@cluster0.np
 process.env.SEED = 'f3-42trfef-4224wh-5y5rh3w3-$-%-TQ-$T-';
 
 // END TOKEN
-process.env.END_TOKEN = 60;
+process.env.END_TOKEN = 60 * 60;
 
 
 //Facebook credentials
 process.env.CLIENT_ID = 163519308853119;
 process.env.CLIENT_SECRET = '30e58b285061ef48c4f355863564d163';
 process.env.CALLBACK_FB = 'http://localhost:3000/auth/facebook/task';
+
+//Email
+process.env.EMAIL = 'memoriaparalau@gmail.com';
+process.env.EMAIL_PASSWORD = 'chris8KiZ9w';
